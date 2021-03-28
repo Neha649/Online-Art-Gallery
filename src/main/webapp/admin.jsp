@@ -163,6 +163,9 @@
                         <div class="form-group">
                              <input type="number" class="form-control" name="pDiscount" placeholder="Enter Product Discount" required=""/>
                         </div>
+                        <div class="form-group">
+                             <input type="number" class="form-control" name="pDiscount" placeholder="Enter Product Discount" required=""/>
+                        </div>
                         <!--product category dynamically fetching-->
                         <%
                            CategoryDao cdao= new CategoryDao(FactoryProvider.getFactory());
