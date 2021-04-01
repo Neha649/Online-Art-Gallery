@@ -1,3 +1,7 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.entities.Category"%>
 <%@page import="com.learn.mycart.dao.CategoryDao"%>
@@ -147,7 +151,8 @@
                 </button>
               </div>
               <div class="modal-body">
-                    <form>
+                  <form action="ProductOperationServlet" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="operation" value="addproduct"/>
                         <div class="form-group">
                             <input type="text" class="form-control" name="pName" placeholder="Enter Product Name" required=""/>
                         </div>
@@ -163,31 +168,33 @@
                         <div class="form-group">
                              <input type="number" class="form-control" name="pDiscount" placeholder="Enter Product Discount" required=""/>
                         </div>
-                      
+                        
                         <!--product category dynamically fetching-->
                         <%
+                           
                            CategoryDao cdao= new CategoryDao(FactoryProvider.getFactory());
                            List<Category> list=cdao.getCategories();
-                        
+                           Connection connection = 
+                            DriverManager.getConnection
+                            ("jdbc:mysql://localhost:3305/mycart?useSSI=false","root","3052");
+
+                          Statement statement = connection.createStatement() ;
+
+                          ResultSet rs =statement.executeQuery("select * from category") ;
+
                         %>
                         
                         <div class="form-group">
-                            <select name="catId" class="form-control" id="">
-                                
-                                <%
-                                    for(Category c: list){
+                            <select name="catId"  class="form-control" id="">
+                               <%  while(rs.next()){    
                                 %>
-                                <option value="<%= c.getCategoryId()%> "> <%= c.getTitle() %></option>
-                                <%
-                                    }
-                                %>
+                                <option value="<%=rs.getInt(1)%>"> <%= rs.getString(2)%></option>
+                                <% } %>  
                             </select>
                         </div>  
                             <!--image feed-->
-                            <div class="form-group">
+                        <div class="form-group">
                                 <input type="file" name="pImage" required=""/>
-                            </div>
-                            
                         </div>
                         <div class="container text-right">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
