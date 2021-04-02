@@ -10,7 +10,6 @@ body {background-color: #F6F5F5;}
   
 }
 
-
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -20,4 +19,9 @@ body {background-color: #F6F5F5;}
 .admin.card{
    background:#CBE79E;
    cursor: pointer;
+}
+.list-group-item.active{
+    color: #fff;
+     background : #1687A7!important;
+     border-color:  #1687A7!important;
 }
