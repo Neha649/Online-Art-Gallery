@@ -33,6 +33,13 @@
          
             </ul>
               <ul class ="navbar-nav ml-auto">
+                  
+                  
+                  <li class="nav-item active">
+                      <a class="nav-link" href="#!" data-toggle="modal" data-target="#cart" ><i class="fa fa-cart-plus" style="font-size: 18px;" ></i><span class="ml-1 cart-items" style= "font-size: 15 px;">(0)</span></a>
+                  </li>
+                  
+                  
                   <%
                   if(user1==null)
                   {

@@ -108,5 +108,10 @@ public class Product {
         return "Product{" + "pId=" + pId + ", pName=" + pName + ", pDesc=" + pDesc + ", pImage=" + pImage + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount + ", pQuantity=" + pQuantity + '}';
     }
     
+    //calculating discount price
+    public int getDisconutPrice(){
+        int d=(int)((this.getpDiscount()/100.0)*this.getpPrice());
+        return (this.getpPrice()-d);
+    }
     
 }
